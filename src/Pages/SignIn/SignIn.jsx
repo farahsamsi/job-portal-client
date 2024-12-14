@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginLottieData from "../../assets/Lottie/Login.json";
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext/AuthContext";
@@ -8,13 +8,14 @@ import { motion } from "framer-motion";
 
 const SignIn = () => {
   const { signInUser, createGoogleUser } = useContext(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
 
   // user with google
   const handleGoogleLogin = () => {
     createGoogleUser()
       .then(() => {
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -50,7 +51,7 @@ const SignIn = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         Swal.fire({
