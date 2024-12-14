@@ -24,6 +24,7 @@ const JobDetails = () => {
     hr_email,
     hr_name,
     company_logo,
+    total_applicants,
   } = job;
   const sectionTitle = title;
   return (
@@ -98,8 +99,8 @@ const JobDetails = () => {
         <p className="text-gray-700">
           <strong>Email:</strong>{" "}
           <a
-            href={`mailto:${hr_email}`}
-            className="text-blue-600 hover:underline"
+            // href={`mailto:${hr_email}`}
+            className="text-blue-600 hover:underline cursor-pointer"
           >
             {hr_email || "N/A"}
           </a>
@@ -107,11 +108,16 @@ const JobDetails = () => {
       </div>
 
       {/* Apply and Shortlist Buttons */}
-      <div className="flex justify-end space-x-4">
-        <button className="btn text-white font-bold bg-primary hover:bg-blue-950">
-          Apply Now
-        </button>
-        <button className="btn btn-outline btn-primary">Shortlist</button>
+      <div className="flex flex-wrap gap-4 items-center justify-between space-x-4">
+        <div>
+          <p>Total Applicants: {total_applicants || 0}</p>
+        </div>
+        <div className="flex space-x-4">
+          <button className="btn text-white font-bold bg-primary hover:bg-blue-950">
+            Apply Now
+          </button>
+          <button className="btn btn-outline btn-primary">Shortlist</button>
+        </div>
       </div>
     </div>
   );
